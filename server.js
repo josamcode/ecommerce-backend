@@ -33,6 +33,13 @@ app.use("/api/products", require("./routes/products"));
 app.use("/api/orders", require("./routes/orderRoutes"));
 app.use("/api/collections", require("./routes/collectionRoutes"));
 
+app.get("/", (req, res) => {
+  res.status(200).json({
+    message: "Welcome to the Ecommerce Backend API!",
+    status: "success",
+  });
+});
+
 // const stripe = require("stripe")(process.env.STRIPE);
 
 app.post("/api/payments", async (req, res) => {

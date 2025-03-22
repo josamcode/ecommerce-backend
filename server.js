@@ -69,5 +69,5 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(Number(process.env.PORT) || 3000, "0.0.0.0", () => {
-  console.log("Flashcardly server is now running!");
+  console.log("server is now running!");
 });

@@ -14,7 +14,7 @@ app.use("/images", express.static(path.resolve("public/images")));
 
 app.use(
   cors({
-    origin: ["https://ecommerce-three-smoky-50.vercel.app"],
+    origin: ["https://josam-ecommerce.vercel.app/"],
     methods: "GET,POST,PUT,DELETE",
     allowedHeaders: "Content-Type,Authorization",
     credentials: true,

@@ -15,12 +15,9 @@ app.use("/images", express.static(path.resolve("public/images")));
 app.use(
   cors({
     origin: [
-      "http://localhost:3000",
-      "http://localhost:3001",
       "https://josam-ecommerce.vercel.app",
       "https://josam-ecommerce-admin-dashboard.vercel.app",
     ],
-    origin: ["https://josam-ecommerce.vercel.app", "https://josam-ecommerce-admin-dashboard.vercel.app"],
     methods: "GET,POST,PUT,DELETE",
     allowedHeaders: "Content-Type,Authorization",
     credentials: true,

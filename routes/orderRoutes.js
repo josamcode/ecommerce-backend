@@ -1,5 +1,6 @@
 const express = require("express");
 const Order = require("../models/Order");
+const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
@@ -88,6 +89,17 @@ router.delete("/:id", async (req, res) => {
     res.status(200).json({ message: "Order deleted successfully" });
   } catch (error) {
     res.status(500).json({ message: "Error deleting order" });
+  }
+});
+
+// Get Orders for a Specific User
+router.get("/get-orders/:userId", async (req, res) => {
+  try {
+    const orders = await Order.find({ "userInfo.userId": req.params.userId });
+    res.status(200).json(orders);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error fetching orders" });
   }
 });
 

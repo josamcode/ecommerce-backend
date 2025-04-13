@@ -1,10 +1,15 @@
 const CollectionModel = require("../models/Collection");
 
 // get new collections
-exports.getAllCollections = (req, res) => {
-  const lang = req.query.lang || "en";
-  const allCollections = CollectionModel.getAll(lang);
-  res.json(allCollections);
+exports.getAllCollections = async (req, res) => {
+  try {
+    const lang = req.query.lang || "en";
+    const allCollections = await CollectionModel.getAll(lang);
+    res.json(allCollections);
+  } catch (error) {
+    console.error('Error getting collections:', error);
+    res.status(500).json({ message: 'Error fetching collections' });
+  }
 };
 
 // get only one collection

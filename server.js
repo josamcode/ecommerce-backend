@@ -20,6 +20,7 @@ app.use(
       "https://josam-ecommerce.vercel.app",
       "https://josam-ecommerce-admin-dashboard.vercel.app",
     ],
+    origin: ["https://josam-ecommerce.vercel.app", "https://josam-ecommerce-admin-dashboard.vercel.app"],
     methods: "GET,POST,PUT,DELETE",
     allowedHeaders: "Content-Type,Authorization",
     credentials: true,

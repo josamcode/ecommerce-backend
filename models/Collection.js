@@ -29,7 +29,7 @@ const initialCollections = [
       en: "Low budget watches for men and women",
       ar: "ساعات رخيصة الثمن للرجال والنساء",
     },
-    value: "cheap_watches",
+    value: "cheap-watches",
   },
 ];
 

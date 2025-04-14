@@ -134,9 +134,6 @@ router.put("/:id", upload.array("images", 10), async (req, res) => {
       updatedData.category = JSON.parse(req.body.category);
     }
 
-    // Handle new images
-    const newImages = req.files.map((file) => `${file.filename}`);
-
     // Find product
     const product = await Product.findById(id);
 
@@ -144,13 +141,23 @@ router.put("/:id", upload.array("images", 10), async (req, res) => {
       return res.status(404).json({ message: "Product not found" });
     }
 
-    // Remove old images if new ones are provided
-    if (newImages.length > 0 && product.images && product.images.length > 0) {
-      deleteImages(product.images);
-      updatedData.images = newImages;
-    } else {
-      // If no new images, keep the old ones
-      updatedData.images = product.images;
+    // Handle images
+    const newImages = req.files.map((file) => `${file.filename}`);
+    const existingImages = req.body.existingImages ? 
+      (Array.isArray(req.body.existingImages) ? req.body.existingImages : [req.body.existingImages]) : 
+      [];
+
+    // Combine existing and new images
+    updatedData.images = [...existingImages, ...newImages];
+
+    // Delete any images that were removed
+    if (product.images && product.images.length > 0) {
+      const imagesToDelete = product.images.filter(
+        (oldImage) => !updatedData.images.includes(oldImage)
+      );
+      if (imagesToDelete.length > 0) {
+        deleteImages(imagesToDelete);
+      }
     }
 
     // Update product

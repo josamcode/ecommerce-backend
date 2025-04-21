@@ -17,8 +17,6 @@ app.use(
     origin: [
       "https://josam-ecommerce.vercel.app",
       "https://josam-ecommerce-admin-dashboard.vercel.app",
-      "http://localhost:3000",
-      "http://localhost:3001",
     ],
     methods: "GET,POST,PUT,DELETE",
     allowedHeaders: "Content-Type,Authorization",

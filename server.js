@@ -17,6 +17,8 @@ app.use(
     origin: [
       "https://josam-ecommerce.vercel.app",
       "https://josam-ecommerce-admin-dashboard.vercel.app",
+      "http://localhost:3000",
+      "http://localhost:3001",
     ],
     methods: "GET,POST,PUT,DELETE",
     allowedHeaders: "Content-Type,Authorization",
@@ -34,6 +36,7 @@ app.use("/api/messages", require("./routes/contactRoutes"));
 app.use("/api/products", require("./routes/products"));
 app.use("/api/orders", require("./routes/orderRoutes"));
 app.use("/api/collections", require("./routes/collectionRoutes"));
+app.use("/api/visits", require("./routes/visitRoutes"));
 
 app.get("/", (req, res) => {
   res.status(200).json({
